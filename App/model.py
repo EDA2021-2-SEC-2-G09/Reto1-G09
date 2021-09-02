@@ -54,42 +54,24 @@ def newCatalog():
     return catalog
 
 # Funciones para agregar informacion al catalogo
-
-def addObra(catalog, obra):
-    # Se adiciona el libro a la lista de libros
-    lt.addLast(catalog['obras'], obra)
-    # Se obtienen los autores del libro
-    authors = obra['DisplayName'].split(",")
-    # Cada autor, se crea en la lista de libros del catalogo, y se
-    # crea un libro en la lista de dicho autor (apuntador al libro)
-    for author in authors:
-        addObraAuthor(catalog, author.strip(), obra)
-
-
-def addObraAuthor(catalog, obra):
+def addAutor(catalog, autor):
     """
-    Adiciona un autor a lista de autores, la cual guarda referencias
-    a los libros de dicho autor
+    Adiciona un tag a la lista de tags
     """
-
-    lt.addLast(catalog['obras'], obra)
-
-    authors = obra['Title'].split(",")
-
-    for author in authors:
-        addObraAuthor(catalog, author.strip(), obra)
+    t = newAutor(autor['autor_name'])
+    lt.addLast(catalog['autores'], t)
 
 # Funciones para creacion de datos
+def newAutor(name):
+    """
+    Esta estructura almancena los tags utilizados para marcar libros.
+    """
+    autor = {'name': ''}
+    autor['name'] = name
+    
+    return autor
 
-def newAuthor(name):
-    """
-    Crea una nueva estructura para modelar los libros de
-    un autor y su promedio de ratings
-    """
-    author = {'name': "", "obras": None}
-    author['name'] = name
-    author['obras'] = lt.newList('ARRAY_LIST')
-    return author
+
 
 # Funciones de consulta
 
