@@ -1,4 +1,4 @@
-﻿"""
+"""
  * Copyright 2020, Departamento de sistemas y Computación, Universidad
  * de Los Andes
  *
@@ -37,9 +37,25 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- ")
+    print("2- Numero de artistas")
+    print('3- Numero de obras')
+    print('4- Ultimos tres elementos (artistas & obras)')
 
 catalog = None
+
+def initCatalog():
+    """
+    Inicializa el catalogo de libros
+    """
+    return controller.initCatalog
+
+def loadData(catalog):
+    """
+    Carga los libros en la estructura de datos
+    """
+    controller.loadData(catalog)
+
+
 
 """
 Menu principal
@@ -49,9 +65,19 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+        catalog = initCatalog()
+        loadData(catalog)
+        print('Archivos cargados')
+
 
     elif int(inputs[0]) == 2:
-        pass
+        print("Cargando Artistas...")
+        print('Artistas cargados: ' + str(lt.size(catalog['autores'])))
+
+
+    elif int(inputs[0]) == 3:
+        print("Cargando Obras...")
+        print('Artistas cargados: ' + str(lt.size(catalog['obras'])))
 
     else:
         sys.exit(0)
