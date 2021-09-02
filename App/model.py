@@ -44,23 +44,53 @@ def newCatalog():
     una lista vacia para los generos y una lista vacia para la asociación
     generos y libros. Retorna el catalogo inicializado.
     """
-    catalog = {'books': None,
-               'authors': None,
-               'tags': None,
-               'book_tags': None}
+    catalog = {'autores': None,
+               'obras': None}
 
-    catalog['books'] = lt.newList()
-    catalog['authors'] = lt.newList('ARRAY_LIST',
-                                    cmpfunction=compareauthors)
-    catalog['tags'] = lt.newList('SINGLE_LINKED',
-                                 cmpfunction=comparetagnames)
-    catalog['book_tags'] = lt.newList('SINGLE_LINKED')
+
+    catalog['autores'] = lt.newList('ARRAY_LIST')
+    catalog['obras'] = lt.newList()
 
     return catalog
-    
+
 # Funciones para agregar informacion al catalogo
 
+def addObra(catalog, obra):
+    # Se adiciona el libro a la lista de libros
+    lt.addLast(catalog['obras'], obra)
+    # Se obtienen los autores del libro
+    authors = obra['DisplayName'].split(",")
+    # Cada autor, se crea en la lista de libros del catalogo, y se
+    # crea un libro en la lista de dicho autor (apuntador al libro)
+    for author in authors:
+        addObraAuthor(catalog, author.strip(), obra)
+
+
+def addObraAuthor(catalog, authorname, book):
+    """
+    Adiciona un autor a lista de autores, la cual guarda referencias
+    a los libros de dicho autor
+    """
+    authors = catalog['autores']
+    posauthor = lt.isPresent(authors, authorname)
+    if posauthor > 0:
+        author = lt.getElement(authors, posauthor)
+    else:
+        author = newAuthor(authorname)
+        lt.addLast(authors, author)
+    lt.addLast(author['obras'], book)
+
 # Funciones para creacion de datos
+
+def newAuthor(name):
+    """
+    Crea una nueva estructura para modelar los libros de
+    un autor y su promedio de ratings
+    """
+    author = {'name': "", "obras": None}
+    author['name'] = name
+    author['obras'] = lt.newList('ARRAY_LIST')
+    return author
 
 # Funciones de consulta
 
