@@ -47,31 +47,25 @@ def newCatalog():
     catalog = {'autores': None,
                'obras': None}
 
-
     catalog['autores'] = lt.newList('ARRAY_LIST')
-    catalog['obras'] = lt.newList()
+    catalog['obras'] = lt.newList('ARRAY_LIST')
 
     return catalog
 
 # Funciones para agregar informacion al catalogo
 def addAutor(catalog, autor):
     """
-    Adiciona un tag a la lista de tags
+    Adiciona un autor a la lista de autores
     """
-    t = newAutor(autor['autor_name'])
-    lt.addLast(catalog['autores'], t)
+    lt.addLast(catalog['autores'],autor)
+
+def addObras(catalog, obra):
+    """
+    Adiciona un autor a la lista de autores
+    """
+    lt.addLast(catalog['obras'],obra)
 
 # Funciones para creacion de datos
-def newAutor(name):
-    """
-    Esta estructura almancena los tags utilizados para marcar libros.
-    """
-    autor = {'name': ''}
-    autor['name'] = name
-    
-    return autor
-
-
 
 # Funciones de consulta
 

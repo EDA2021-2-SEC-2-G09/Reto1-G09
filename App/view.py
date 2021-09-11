@@ -41,19 +41,20 @@ def printMenu():
     print('3- Numero de obras')
     print('4- Ultimos tres elementos (artistas & obras)')
 
-catalog = None
 
 def initCatalog():
     """
     Inicializa el catalogo de libros
     """
-    return controller.initCatalog
+    return controller.initCatalog()
 
 def loadData(catalog):
     """
     Carga los libros en la estructura de datos
     """
     controller.loadData(catalog)
+
+catalog = None
 
 
 
@@ -77,7 +78,7 @@ while True:
 
     elif int(inputs[0]) == 3:
         print("Cargando Obras...")
-        print('Artistas cargados: ' + str(lt.size(catalog['obras'])))
+        print('Obras Cargadas: ' + str(lt.size(catalog['obras'])))
 
     else:
         sys.exit(0)
