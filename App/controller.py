@@ -42,10 +42,9 @@ def loadData(catalog):
 
     loadAutores(catalog)
     loadObras(catalog)
-    
 
 # Funciones para la carga de datos
-   
+
 def loadAutores(catalog):
 
     artistsfile = cf.data_dir + 'MoMA/Artists-utf8-small.csv'
@@ -61,8 +60,17 @@ def loadObras(catalog):
         model.addObras(catalog,obras)
 
 
+
+# Funciones de consulta sobre el catálogo
+def chrono(catalogo, annoInicial, annoFinal, sortFunction):
+
+    return model.req2(catalogo, annoInicial, annoFinal, sortFunction)
+
 # Funciones de ordenamiento
 
 
 
 # Funciones de consulta sobre el catálogo
+
+
+
