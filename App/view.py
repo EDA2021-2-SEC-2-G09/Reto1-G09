@@ -40,7 +40,7 @@ def printMenu():
     print("2- Numero de artistas")
     print('3- Numero de obras')
     print('4- Ultimos tres elementos (artistas & obras)')
-    print("5- req1")
+    print("5- Listar Cronologicamente los artistas")
     print("6- Ordenar Cronologicamente las obras")
 
 def initCatalog():
@@ -54,23 +54,6 @@ def loadData(catalog):
     Carga los libros en la estructura de datos
     """
     controller.loadData(catalog)
-
-
-def req1(catalogo, annoInicial, annoFinal):
-    instanceCatalogo = catalogo
-    instanceCatalogo["autores"]["elements"].sort(key=lambda elem: (int)(elem["BeginDate"]), reverse = True)
-    resultado = []
-    for i in instanceCatalogo["autores"]["elements"]:
-        if (int)(i["BeginDate"])>(int)(annoFinal):
-            continue
-        if (int)(i["BeginDate"]) < (int)(annoInicial):
-            break
-        print(i["BeginDate"])
-        resultado.append(i)
-    resultado.reverse()
-    return resultado
-
-
 
 catalog = None
 
@@ -98,15 +81,21 @@ while True:
     
 
     elif int(inputs[0]) == 5:
-        resultado = req1(catalog, "1920", "1985")
-        print(len(resultado)) #numero de artistas en el rango entregado
-        print(resultado[0]) #
-        print(resultado[1])
-        print(resultado[2])
-        print(resultado[-1])
-        print(resultado[-2])
-        print(resultado[-3])
 
+        annoInicial =  input('Ingrese el año inicial: ')
+        annoFinal   =  input('Ingrese el año final:  ')
+        resultado   =  controller.artchrono(catalog,annoInicial,annoFinal)
+        if len(resultado) != 0:
+            print(len(resultado)) #numero de artistas en el rango entregado
+            print(resultado[0]) #
+            print(resultado[1])
+            print(resultado[2])
+            print(resultado[-1])
+            print(resultado[-2])
+            print(resultado[-3])
+        else:
+            print('No hay artistas en este rango')
+        
     elif int(inputs[0]) == 6:
         annoInicial =  input('Ingrese la fecha inicial de la forma año-mes-dia: ')
         annoFinal   =  input('Ingrese la fecha final de la forma año-mes-dia:: ')

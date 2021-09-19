@@ -62,6 +62,9 @@ def loadObras(catalog):
 
 
 # Funciones de consulta sobre el catálogo
+def artchrono(catalogo, annoInicial, annoFinal):
+    return model.req1(catalogo,annoInicial,annoFinal)
+   
 def chrono(catalogo, annoInicial, annoFinal, sortFunction):
 
     return model.req2(catalogo, annoInicial, annoFinal, sortFunction)

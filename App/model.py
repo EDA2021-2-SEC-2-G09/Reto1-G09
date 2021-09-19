@@ -80,6 +80,20 @@ def addObras(catalog, obra):
 # Funciones utilizadas para comparar elementos dentro de una lista
 sortingAlgorigthms = [ISort.sort, MSort.sort, SSort.sort, ShSort.sort, QSort.quicksort]
 
+def req1(catalogo, annoInicial, annoFinal):
+    instanceCatalogo = catalogo
+    instanceCatalogo["autores"]["elements"].sort(key=lambda elem: (int)(elem["BeginDate"]), reverse = True)
+    resultado = []
+    for i in instanceCatalogo["autores"]["elements"]:
+        if (int)(i["BeginDate"])>(int)(annoFinal):
+            continue
+        if (int)(i["BeginDate"]) < (int)(annoInicial):
+            break
+        print(i["BeginDate"])
+        resultado.append(i)
+    resultado.reverse()
+    return resultado
+
 def req2(catalogo, annoInicial, annoFinal, sortFunction):
     """
     for i in range(lt.size(instanceCatalogo["obras"])):
