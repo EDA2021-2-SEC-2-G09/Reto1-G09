@@ -47,33 +47,29 @@ def loadData(catalog):
 
 def loadAutores(catalog):
 
-    artistsfile = cf.data_dir + 'MoMA/Artists-utf8-small.csv'
+    artistsfile = cf.data_dir + 'MoMA/Artists-utf8-large.csv'
     input_file = csv.DictReader(open(artistsfile,encoding='utf-8'))
     for autor in input_file:
         model.addAutor(catalog,autor)
 
 def loadObras(catalog):
 
-    artistsfile = cf.data_dir + 'MoMA/Artworks-utf8-small.csv'
+    artistsfile = cf.data_dir + 'MoMA/Artworks-utf8-large.csv'
     input_file = csv.DictReader(open(artistsfile,encoding='utf-8'))
     for obras in input_file:
         model.addObras(catalog,obras)
 
-
-
 # Funciones de consulta sobre el catálogo
+
 def artchrono(catalogo, annoInicial, annoFinal):
     return model.req1(catalogo,annoInicial,annoFinal)
+
+def chrono(catalogo,annoInicial,annoFinal,sort):
+    return model.req2(catalogo,annoInicial,annoFinal,sort)
    
-def chrono(catalogo, annoInicial, annoFinal, sortFunction):
+def medium(catalogo,artista):
+    return model.req3(catalogo,artista)
 
-    return model.req2(catalogo, annoInicial, annoFinal, sortFunction)
-
-# Funciones de ordenamiento
-
-
-
-# Funciones de consulta sobre el catálogo
 
 
 
